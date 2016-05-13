@@ -1,0 +1,88 @@
+
+{"name": "entity",
+"children": [
+{"name": "boat"}
+,
+{"name": "creative work",
+"children": [
+{"name": "book"}
+,
+{"name": "film"}
+,
+{"name": "tv program"}
+]
+}
+,
+{"name": "disease"}
+,
+{"name": "location",
+"children": [
+{"name": "city"}
+,
+{"name": "country",
+"children": [
+{"name": "island"}
+]
+}
+,
+{"name": "planet"}
+,
+{"name": "river"}
+]
+}
+,
+{"name": "newspaper",
+"children": [
+{"name": "magazine"}
+]
+}
+,
+{"name": "person",
+"children": [
+{"name": "artist",
+"children": [
+{"name": "director"}
+,
+{"name": "actor"}
+,
+{"name": "musician"}
+]
+}
+,
+{"name": "author"}
+,
+{"name": "organization founder"}
+,
+{"name": "politician",
+"children": [
+{"name": "military person"}
+,
+{"name": "monarch"}
+]
+}
+,
+{"name": "pro athlete",
+"children": [
+{"name": "basketball player"}
+,
+{"name": "football player"}
+]
+}
+,
+{"name": "religious leader"}
+]
+}
+,
+{"name": "religion"}
+,
+{"name": "vehicle",
+"children": [
+{"name": "aircraft"}
+,
+{"name": "car"}
+,
+{"name": "truck"}
+]
+}
+]
+}
