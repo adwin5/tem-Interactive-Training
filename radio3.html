@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Radial Cluster Demo</title>
+        <script type="text/javascript" src="//d3js.org/d3.v3.min.js"></script>
+        <style>
+            svg {
+                border: solid 1px #ccc;
+                font: 10px sans-serif;
+            }
+            .link {
+                fill: none;
+                stroke: #ccc;
+                stroke-width: 1.5px;
+            }
+        </style>
+    </head>
+    <body>
+ 
+        <div id="viz"></div>
+ 
+        <script type="text/javascript">
+ 
+            //JSON object with the data
+            var treeData = {"name": "entity",
+"children": [
+{"name": "creative work",
+"children": [
+{"name": "book"}
+,
+{"name": "film"}
+,
+{"name": "tv program"}
+]
+}
+,
+{"name": "disease"}
+,
+{"name": "location",
+"children": [
+{"name": "city"}
+,
+{"name": "country"}
+,
+{"name": "island"}
+,
+{"name": "planet"}
+]
+}
+,
+{"name": "magazine"}
+,
+{"name": "newspaper"}
+,
+{"name": "person",
+"children": [
+{"name": "artist",
+"children": [
+{"name": "musician"}
+]
+}
+,
+{"name": "author"}
+,
+{"name": "director"}
+,
+{"name": "actor"}
+,
+{"name": "football player"}
+,
+{"name": "military person"}
+,
+{"name": "monarch",
+"children": [
+{"name": "religious leader"}
+]
+}
+,
+{"name": "organization founder"}
+,
+{"name": "politician"}
+,
+{"name": "pro athlete",
+"children": [
+{"name": "basketball player"}
+]
+}
+]
+}
+,
+{"name": "religion"}
+,
+{"name": "river"}
+,
+{"name": "vehicle",
+"children": [
+{"name": "aircraft"}
+,
+{"name": "boat"}
+,
+{"name": "car"}
+,
+{"name": "truck"}
+]
+}
+]
+}
+ 
+            // Create a svg canvas
+            var vis = d3.select("#viz").append("svg:svg")
+            .attr("width", 600)
+            .attr("height", 600)
+            .append("svg:g")
+            .attr("transform", "translate(300, 300)");
+ 
+            // Create a cluster "canvas"
+            var cluster = d3.layout.cluster()
+            .size([300,150]);
+ 
+            var diagonal = d3.svg.diagonal.radial()
+            .projection(function(d) { return [d.y, d.x / 180 * Math.PI]; });
+ 
+            var nodes = cluster.nodes(treeData);
+            var links = cluster.links(nodes);
+ 
+            var link = vis.selectAll("pathlink")
+            .data(links)
+            .enter().append("svg:path")
+            .attr("class", "link")
+            .attr("d", diagonal)
+ 
+            var node = vis.selectAll("g.node")
+            .data(nodes)
+            .enter().append("svg:g")
+            .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + d.y + ")"; })
+ 
+            // Add the dot at every node
+            node.append("svg:circle")
+            .attr("r", 3.5);
+ 
+            node.append("svg:text")
+            .attr("dx", function(d) { return d.x < 180 ? 8 : -8; })
+            .attr("dy", ".31em")
+            .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
+            .attr("transform", function(d) { return d.x < 180 ? null : "rotate(180)"; })
+            .text(function(d) { return d.name; });
+        </script>
+    </body>
+</html>
